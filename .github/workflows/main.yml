@@ -1,0 +1,15 @@
+name: Docker Build Pipeline
+
+#Wann soll die Pipeline starten? Jedes Mal, wenn wir den Code Pushen
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        #1. Lade den Code aus unserem Repository herunter
+      - uses: actions/checkout@v3
+      
+        #2. Baue das Docker image
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag meine-app:latest
